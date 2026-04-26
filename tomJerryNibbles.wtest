@@ -1,17 +1,59 @@
 import tomJerryNibbles.*
 
-describe "Grupo de test" {
+describe "Grupo de tests de Tom" {
 
-  test "test 1" {
-    assert.equals(100, 50+50)
+  test "La velocidad de Tom pasa a ser 15.2 luego de comerse a Jerry" {
+    tom.comerRaton(jerry)
+    assert.equals(15.2, tom.velocidad())
   }
 
-  test "test 3" {
-    assert.that(true)
+  test "La velocidad de Tom pasa a ser 14 luego de comerser a Jerry y correr 24 metros" {
+    tom.comerRaton(jerry)
+    tom.correr(24)
+    assert.equals(14, tom.velocidad())
   }
 
-  test "test 4" {
-    assert.notThat(false)
+  test "La velocidad de Tom pasa a ser 18.7 luego de comerser a Jerry, correr 24 metros y comerse a Nibbles" {
+    tom.comerRaton(jerry)
+    tom.correr(24)
+    tom.comerRaton(nibbles)
+    assert.equals(18.7, tom.velocidad())
+  }
+
+  test "La velocidad de Tom pasa a ser 25.9 luego de comerse a Jerry 2 veces y correr 24 metros" {
+    tom.comerRaton(jerry)
+    tom.correr(24)
+    tom.comerRaton(nibbles)
+    jerry.cambiarEdad(3)
+    tom.comerRaton(jerry)
+    assert.equals(25.9, tom.velocidad())
+  }
+
+  test "La velocidad de Tom pasa a ser 25.9 luego de comerse a Jerry 2 veces y correr 62 metros" {
+    tom.comerRaton(jerry)
+    tom.correr(24)
+    tom.comerRaton(nibbles)
+    jerry.cambiarEdad(3)
+    tom.comerRaton(jerry)
+    tom.correr(38)
+    assert.equals(24, tom.velocidad())
+  }
+}
+
+describe "Grupo de tests de Tom con escenario inicial" {
+
+  method initialize() {
+    pedrin.comerQueso(100)
+    jerry.cambiarEdad(4)
+  }
+
+  test "Tom puede comer a un ratón si la distancia es de 20" {
+    assert.that(tom.puedeComerRaton(20))
+  }
+
+  test "La velocidad de Tom pasa a ser 13.2 luego de cazar a Pedrin a 50 metros" {
+    tom.cazarRaton(pedrin, 50)
+    assert.equals(13.2, tom.velocidad())
   }
 
 }
